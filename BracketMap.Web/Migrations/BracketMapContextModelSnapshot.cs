@@ -19,11 +19,13 @@ namespace BracketMap.Web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("EFGetStarted.AspNetCore.NewDb.Models.NodeMap", b =>
+            modelBuilder.Entity("EFGetStarted.AspNetCore.NewDb.Models.BracketData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("TournamentId");
 
                     b.Property<int>("Victor");
 
@@ -38,18 +40,18 @@ namespace BracketMap.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
+                    b.Property<int?>("BracketDataId");
 
-                    b.Property<int?>("NodeMapId");
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NodeMapId");
+                    b.HasIndex("BracketDataId");
 
                     b.ToTable("Players");
                 });
 
-            modelBuilder.Entity("EFGetStarted.AspNetCore.NewDb.Models.Tournement", b =>
+            modelBuilder.Entity("EFGetStarted.AspNetCore.NewDb.Models.Tournament", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,14 +63,14 @@ namespace BracketMap.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tournements");
+                    b.ToTable("Tournaments");
                 });
 
             modelBuilder.Entity("EFGetStarted.AspNetCore.NewDb.Models.Player", b =>
                 {
-                    b.HasOne("EFGetStarted.AspNetCore.NewDb.Models.NodeMap", null)
-                        .WithMany("Players")
-                        .HasForeignKey("NodeMapId");
+                    b.HasOne("EFGetStarted.AspNetCore.NewDb.Models.BracketData", null)
+                        .WithMany("PlayerId")
+                        .HasForeignKey("BracketDataId");
                 });
 #pragma warning restore 612, 618
         }
