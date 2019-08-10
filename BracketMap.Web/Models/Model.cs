@@ -18,7 +18,8 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int PlayerCout { get; set; }
+        public int PlayerCount { get; set; }
+
     }
 
     public class NodeMap
