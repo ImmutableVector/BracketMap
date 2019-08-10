@@ -8,9 +8,9 @@ To set up development environment:
 2) Download/Install .NET Core 3.0 SDK: https://dotnet.microsoft.com/download/dotnet-core/3.0
 3) If you are not already running SQL Server, downlaod and install it
     https://www.microsoft.com/en-us/sql-server/sql-server-editions-express
-   Also get SSMS or Azure Data Studio if you want to view the database at all
-    SSMS: https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-2017
-    Azure Data Studio: https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017
+   - Also get SSMS or Azure Data Studio if you want to view the database at all
+    - SSMS: https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-2017
+    - Azure Data Studio: https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017
 4) Clone the project locally
 5) Open the .sln file
 6) In Visual Studio, go to **Tools > Options > Preview Features**
