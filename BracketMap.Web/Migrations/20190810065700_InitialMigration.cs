@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BracketMap.Web.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,9 @@ namespace BracketMap.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    TournamentId = table.Column<int>(nullable: false),
+                    Victor = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -20,17 +22,17 @@ namespace BracketMap.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tournements",
+                name: "Tournaments",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    PlayerCout = table.Column<int>(nullable: false)
+                    PlayerCount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tournements", x => x.Id);
+                    table.PrimaryKey("PK_Tournaments", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -40,23 +42,23 @@ namespace BracketMap.Web.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    NodeMapId = table.Column<int>(nullable: true)
+                    BracketDataId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Players", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Players_NodeMaps_NodeMapId",
-                        column: x => x.NodeMapId,
+                        name: "FK_Players_NodeMaps_BracketDataId",
+                        column: x => x.BracketDataId,
                         principalTable: "NodeMaps",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Players_NodeMapId",
+                name: "IX_Players_BracketDataId",
                 table: "Players",
-                column: "NodeMapId");
+                column: "BracketDataId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -65,7 +67,7 @@ namespace BracketMap.Web.Migrations
                 name: "Players");
 
             migrationBuilder.DropTable(
-                name: "Tournements");
+                name: "Tournaments");
 
             migrationBuilder.DropTable(
                 name: "NodeMaps");

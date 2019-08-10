@@ -1,24 +1,22 @@
-<h1>Weather forecast</h1>
+<h1>Tournament</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
+<p *ngIf="!tournaments"><em>Loading...</em></p>
 
-<table class='table table-striped' *ngIf="forecasts">
+<table class='table' *ngIf="tournaments">
   <thead>
     <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Number of Players</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.dateFormatted }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
+    <tr *ngFor="let tournament of tournaments">
+      <td>{{ tournament.id }}</td>
+      <td>{{ tournament.name }}</td>
+      <td>{{ tournament.playerCount }}</td>
     </tr>
   </tbody>
 </table>

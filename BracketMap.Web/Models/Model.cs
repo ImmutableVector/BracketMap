@@ -9,23 +9,23 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
             : base(options)
         { }
 
-        public DbSet<Tournement> Tournements { get; set; }
-        public DbSet<NodeMap> NodeMaps { get; set; }
+        public DbSet<Tournament> Tournaments { get; set; }
+        public DbSet<BracketData> NodeMaps { get; set; }
         public DbSet<Player> Players { get; set;  }
     }
 
-    public class Tournement
+    public class Tournament
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int PlayerCount { get; set; }
-
     }
 
-    public class NodeMap
+    public class BracketData
     {
         public int Id { get; set; }
-        public ICollection<Player> Players { get; set; }
+        public int TournamentId { get; set; }
+        public ICollection<Player> PlayerId { get; set; }
         public int Victor { get; set; }
     }
 
