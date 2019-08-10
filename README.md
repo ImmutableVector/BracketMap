@@ -14,9 +14,9 @@ To set up development environment:
 4) Clone the project locally
 5) Open the .sln file
 6) In Visual Studio, go to **Tools > Options > Preview Features**
-   Check the "Use previews of the .NET Core SDK (requires restart)" checkbox
+   Check the **"Use previews of the .NET Core SDK (requires restart)" checkbox**
 7) Restart Visual Studios and re-open the project
-8) In Visual Studio, go to Tools > Nuget Package > Package Manager Console
+8) In Visual Studio, go to **Tools > Nuget Package > Package Manager Console**
 9) Type the command: **Update-Database**
 10) Build your project
 11) Run it
