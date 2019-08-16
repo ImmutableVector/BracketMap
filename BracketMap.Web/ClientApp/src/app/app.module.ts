@@ -23,7 +23,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    ], { useHash: true })
   ],
   providers: [],
   bootstrap: [AppComponent]
