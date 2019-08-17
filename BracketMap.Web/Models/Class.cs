@@ -1,19 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace EFGetStarted.AspNetCore.NewDb.Models
+namespace BracketMap.Web.Models
 {
-    public class BracketMapContext : DbContext
-    {
-        public BracketMapContext(DbContextOptions<BracketMapContext> options)
-            : base(options)
-        { }
-
-        public DbSet<Tournament> Tournaments { get; set; }
-        public DbSet<BracketData> NodeMaps { get; set; }
-        public DbSet<Player> Players { get; set;  }
-    }
-
     public class Tournament
     {
         public int Id { get; set; }
@@ -33,5 +25,9 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+    }
+
+    public class ApplicationUser : IdentityUser
+    {
     }
 }

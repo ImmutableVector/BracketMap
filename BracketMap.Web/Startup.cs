@@ -1,11 +1,13 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using EFGetStarted.AspNetCore.NewDb.Models;
 using Microsoft.EntityFrameworkCore;
+using BracketMap.Web.Data;
+using BracketMap.Web.Models;
 
 namespace BracketMap.Web
 {
@@ -21,6 +23,20 @@ namespace BracketMap.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=BracketMap;Trusted_Connection=True;ConnectRetryCount=0";
+
+            services.AddDbContext<BracketMapContext>
+                (options => options.UseSqlServer(connection));
+
+            services.AddDefaultIdentity<ApplicationUser>()
+                           .AddEntityFrameworkStores<BracketMapContext>();
+
+            services.AddIdentityServer()
+                .AddApiAuthorization<ApplicationUser, BracketMapContext>();
+
+            services.AddAuthentication()
+                .AddIdentityServerJwt();
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
             // In production, the Angular files will be served from this directory
@@ -28,10 +44,6 @@ namespace BracketMap.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=BracketMap;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<BracketMapContext>
-                (options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +51,7 @@ namespace BracketMap.Web
         {
             if (env.IsDevelopment())
             {
+                //app.UseDatabaseErrorPage();
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -46,8 +59,12 @@ namespace BracketMap.Web
                 app.UseExceptionHandler("/Error");
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseAuthentication();
+            app.UseIdentityServer();
 
             app.UseMvc(routes =>
             {
