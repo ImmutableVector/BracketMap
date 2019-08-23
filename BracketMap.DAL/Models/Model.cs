@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace EFGetStarted.AspNetCore.NewDb.Models
+namespace BracketMap.DAL.Models
 {
     public class BracketMapContext : DbContext
     {
@@ -11,7 +11,7 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
 
         public DbSet<Tournament> Tournaments { get; set; }
         public DbSet<BracketData> NodeMaps { get; set; }
-        public DbSet<Player> Players { get; set;  }
+        public DbSet<Player> Players { get; set; }
     }
 
     public class Tournament

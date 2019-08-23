@@ -9,7 +9,7 @@ export class FetchDataComponent {
   public tournaments: Tournament[];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Tournament[]>(baseUrl + 'api/Tournament').subscribe((result: Tournament[]) => {
+    http.get<Tournament[]>(baseUrl + 'tournament').subscribe((result: Tournament[]) => {
       this.tournaments = result;
     }, (error: any) => console.error(error));
   }

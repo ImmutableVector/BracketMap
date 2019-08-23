@@ -5,12 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using EFGetStarted.AspNetCore.NewDb.Models;
+using BracketMap.DAL.Models;
 
 namespace BracketMap.Web.Controllers
 {
-    [Route("api/Tournament")]
+    [Route("tournament")]
     [ApiController]
+
+    // TODO: Right now I am just using the db context directly in the controller, this needs to be refactored into the n-tier 
+    // layers and is only acting as a poc. Once we commit to the primary design, we can get this cleaned up.
     public class TournamentsController : ControllerBase
     {
         private readonly BracketMapContext _context;
@@ -20,14 +23,14 @@ namespace BracketMap.Web.Controllers
             _context = context;
         }
 
-        // GET: api/Tournaments
+        // GET: tournaments
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Tournament>>> GetTournaments()
         {
             return await _context.Tournaments.ToListAsync();
         }
 
-        // GET: api/Tournaments/5
+        // GET: tournaments/1
         [HttpGet("{id}")]
         public async Task<ActionResult<Tournament>> GetTournament(int id)
         {
@@ -41,7 +44,7 @@ namespace BracketMap.Web.Controllers
             return tournament;
         }
 
-        // PUT: api/Tournaments/5
+        // PUT: tournaments/1
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTournament(int id, Tournament tournament)
         {
@@ -71,7 +74,7 @@ namespace BracketMap.Web.Controllers
             return NoContent();
         }
 
-        // POST: api/Tournaments
+        // POST: tournaments
         [HttpPost]
         public async Task<ActionResult<Tournament>> PostTournament(Tournament tournament)
         {
@@ -81,7 +84,7 @@ namespace BracketMap.Web.Controllers
             return CreatedAtAction("GetTournament", new { id = tournament.Id }, tournament);
         }
 
-        // DELETE: api/Tournaments/5
+        // DELETE: tournaments/1
         [HttpDelete("{id}")]
         public async Task<ActionResult<Tournament>> DeleteTournament(int id)
         {
