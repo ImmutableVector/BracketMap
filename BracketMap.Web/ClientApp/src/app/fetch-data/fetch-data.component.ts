@@ -1,5 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-fetch-data',
@@ -8,10 +10,10 @@ import { HttpClient } from '@angular/common/http';
 export class FetchDataComponent {
   public tournaments: Tournament[];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Tournament[]>(baseUrl + 'tournament').subscribe((result: Tournament[]) => {
+  constructor(http: HttpClient) {
+    http.get<Tournament[]>(`${environment.apiUrl}/tournament`).subscribe((result: Tournament[]) => {
       this.tournaments = result;
-    }, (error: any) => console.error(error));
+    }, error => console.error(error));
   }
 }
 
