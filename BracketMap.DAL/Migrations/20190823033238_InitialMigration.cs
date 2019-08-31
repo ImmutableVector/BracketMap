@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BracketMap.Web.Migrations
+namespace BracketMap.DAL.Migrations
 {
     public partial class InitialMigration : Migration
     {

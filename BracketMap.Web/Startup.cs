@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using EFGetStarted.AspNetCore.NewDb.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace BracketMap.Web
 {
@@ -28,10 +26,6 @@ namespace BracketMap.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=BracketMap;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<BracketMapContext>
-                (options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
