@@ -1,30 +1,25 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../services';
+import { map } from 'rxjs/operators';
+import { Tournament } from '../models';
 
 @Component({
   selector: 'bm-tournament',
   templateUrl: './tournament.component.html',
   styleUrls: ['./tournament.component.scss']
 })
-export class TournamentComponent {
+export class TournamentComponent implements OnInit {
   tournaments: Tournament[] = [];
 
-  constructor(http: HttpClient) {
-    http.get<Tournament[]>(`${environment.apiUrl}/tournament`)
-      .subscribe({
-        next: result => {
-          this.tournaments = result;
-        },
-        error: error => {
-          console.error(error);
-        }
-      });
-  }
-}
+  constructor(private httpService: HttpService) { }
 
-interface Tournament {
-  id: string;
-  name: number;
-  playerCount: number;
+  ngOnInit(): void {
+    this.httpService.get<Tournament[]>(`Tournament`)
+      .pipe(map(response => {
+        if (response.body === null) {
+          throw new Error(response.status.toString());
+        }
+        return response.body;
+      }));
+  }
 }
