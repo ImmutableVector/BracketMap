@@ -20,6 +20,9 @@ export class TournamentComponent implements OnInit {
           throw new Error(response.status.toString());
         }
         return response.body;
-      }));
+      }))
+      .subscribe(data => {
+        this.tournaments = data;
+      });
   }
 }
