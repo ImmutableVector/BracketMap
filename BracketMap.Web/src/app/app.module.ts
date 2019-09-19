@@ -15,11 +15,11 @@ import { HttpService } from './services';
     TournamentComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     HttpClientModule
   ],
   providers: [HttpService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, NavComponent]
 })
 export class AppModule { }
