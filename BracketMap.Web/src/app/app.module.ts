@@ -7,12 +7,14 @@ import { NavComponent } from './nav/nav.component';
 import { TournamentComponent } from './tournament/tournament.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './services';
+import { NewComponent } from './tournament/new/new.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    TournamentComponent
+    TournamentComponent,
+    NewComponent
   ],
   imports: [
     BrowserModule,
