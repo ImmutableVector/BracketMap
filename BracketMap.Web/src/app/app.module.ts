@@ -18,12 +18,12 @@ import { NewComponent } from './tournament/new/new.component';
     NewComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     HttpClientModule,
     FormsModule
   ],
   providers: [HttpService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, NavComponent]
 })
 export class AppModule { }
