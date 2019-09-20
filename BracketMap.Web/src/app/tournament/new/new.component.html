@@ -1,1 +1,23 @@
-<p>new works!</p>
+<div>
+  <h1>New Tournament</h1>
+  <div>
+    <div>
+      <label>Name: </label>
+      <input type="text" [(ngModel)]="model.name" />
+    </div>
+    <br />
+    <div>
+      <label>Number of people per team: </label>
+      <input type="number" [(ngModel)]="model.playerCount" />
+    </div>
+    <br />
+    <div>
+      <label>Number of teams per fight: </label>
+      <input type="number" [(ngModel)]="model.teamCount" />
+    </div>
+    <br />
+    <div>
+      <button type="button" (click)="create()">Create</button>
+    </div>
+  </div>
+</div>
