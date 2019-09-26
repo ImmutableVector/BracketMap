@@ -9,13 +9,15 @@ import { TournamentComponent } from './tournament/tournament.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './services';
 import { NewComponent } from './tournament/new/new.component';
+import { FightComponent } from './fight/fight.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     TournamentComponent,
-    NewComponent
+    NewComponent,
+    FightComponent
   ],
   imports: [
     AppRoutingModule,
