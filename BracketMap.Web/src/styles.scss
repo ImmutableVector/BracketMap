@@ -1,3 +1,45 @@
 body {
   margin: 0;
+  font-family: Arial;
+}
+
+label.required::after {
+  content: "*";
+  color: red;
+}
+
+a,
+button {
+  padding: 0.5rem;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  background: white;
+  color: black;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background: lightgrey;
+  }
+
+  &.active {
+    background: black;
+    color: white;
+  }
+}
+
+input {
+  display: block;
+  width: 15rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: black;
+  background: white;
+  border: 1px solid black;
+  border-radius: 0.25rem;
 }

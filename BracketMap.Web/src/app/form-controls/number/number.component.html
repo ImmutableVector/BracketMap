@@ -1,0 +1,5 @@
+<label [for]="name" [class.required]="required">
+  {{label}}
+</label>
+<br />
+<input type="number" [id]="name" [max]="max" [min]="min" [ngModel]="model" (blur)="onTouched()" (ngModelChange)="changeModel($event)" />
