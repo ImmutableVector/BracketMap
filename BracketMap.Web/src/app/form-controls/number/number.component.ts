@@ -34,6 +34,12 @@ export class NumberComponent implements ControlValueAccessor, Validator {
     this.onChange(this.model);
   }
 
+  onlyUpDown(event: KeyboardEvent) {
+    if (event.code !== 'ArrowUp' && event.code !== 'ArrowDown') {
+      event.preventDefault();
+    }
+  }
+
   onChange(_value: number | null) {
     return;
   }
@@ -72,9 +78,10 @@ export class NumberComponent implements ControlValueAccessor, Validator {
   writeValue(value: any): void {
     if (value === null) {
       this.model = value;
+      return;
     }
 
-    if (typeof value === 'number') {
+    if (typeof value !== 'number') {
       throw new Error('form control expects a number');
     }
 
