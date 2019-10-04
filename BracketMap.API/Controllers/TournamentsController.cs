@@ -31,7 +31,7 @@ namespace BracketMap.Web.Controllers
         }
 
         // GET: tournaments/1
-        [HttpGet("{id}")]
+        [HttpGet]
         public async Task<ActionResult<Tournament>> GetTournament(int id)
         {
             var tournament = await _context.Tournaments.FindAsync(id);
@@ -45,10 +45,10 @@ namespace BracketMap.Web.Controllers
         }
 
         // PUT: tournaments/1
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTournament(int id, Tournament tournament)
+        [HttpPut]
+        public async Task<IActionResult> PutTournament(Tournament tournament)
         {
-            if (id != tournament.Id)
+            if (tournament.Id == null)
             {
                 return BadRequest();
             }
@@ -61,7 +61,7 @@ namespace BracketMap.Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TournamentExists(id))
+                if (!TournamentExists(tournament.Id ?? 0))
                 {
                     return NotFound();
                 }
@@ -76,17 +76,17 @@ namespace BracketMap.Web.Controllers
 
         // POST: tournaments
         [HttpPost]
-        public async Task<ActionResult<Tournament>> PostTournament(Tournament tournament)
+        public async Task<ActionResult<int>> PostTournament(Tournament tournament)
         {
             _context.Tournaments.Add(tournament);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTournament", new { id = tournament.Id }, tournament);
+            return tournament.Id;
         }
 
         // DELETE: tournaments/1
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Tournament>> DeleteTournament(int id)
+        [HttpDelete]
+        public async Task<ActionResult> DeleteTournament(int id)
         {
             var tournament = await _context.Tournaments.FindAsync(id);
             if (tournament == null)
@@ -97,7 +97,7 @@ namespace BracketMap.Web.Controllers
             _context.Tournaments.Remove(tournament);
             await _context.SaveChangesAsync();
 
-            return tournament;
+            return NoContent();
         }
 
         private bool TournamentExists(int id)
