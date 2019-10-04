@@ -11,17 +11,6 @@ export class TournamentService {
 
   constructor(private httpService: HttpService) { }
 
-  getTournaments(): Observable<Tournament[]> {
-    return this.httpService.get<Tournament[]>('Tournament')
-      .pipe(map(response => {
-        if (response.body === null) {
-          throw new Error(response.status.toString());
-        }
-
-        return response.body;
-      }));
-  }
-
   get(id: number): Observable<Tournament> {
     return this.httpService.get<Tournament>('Tournament', { id: id.toString() })
       .pipe(map(response => {

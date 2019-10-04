@@ -24,7 +24,7 @@ namespace BracketMap.Web.Controllers
         }
 
         // GET: tournaments
-        [HttpGet]
+        [HttpGet("All")]
         public async Task<ActionResult<IEnumerable<Tournament>>> GetTournaments()
         {
             return await _context.Tournaments.ToListAsync();
@@ -48,10 +48,10 @@ namespace BracketMap.Web.Controllers
         [HttpPut]
         public async Task<IActionResult> PutTournament(Tournament tournament)
         {
-            if (tournament.Id == null)
-            {
-                return BadRequest();
-            }
+            //if (tournament.Id == null)
+            //{
+            //    return BadRequest();
+            //}
 
             _context.Entry(tournament).State = EntityState.Modified;
 
@@ -61,7 +61,7 @@ namespace BracketMap.Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TournamentExists(tournament.Id ?? 0))
+                if (!TournamentExists(tournament.Id))
                 {
                     return NotFound();
                 }

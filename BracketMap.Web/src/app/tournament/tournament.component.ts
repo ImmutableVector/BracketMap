@@ -14,7 +14,7 @@ export class TournamentComponent implements OnInit {
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
-    this.httpService.get<Tournament[]>(`Tournament`)
+    this.httpService.get<Tournament[]>(`Tournament/All`)
       .pipe(map(response => {
         if (response.body === null) {
           throw new Error(response.status.toString());
