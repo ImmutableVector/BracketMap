@@ -2,4 +2,4 @@
   {{label}}
 </label>
 <br />
-<input type="number" [id]="name" [max]="max" [min]="min" [ngModel]="model" (blur)="onTouched()" (ngModelChange)="changeModel($event)" />
+<input type="number" [id]="name" [max]="max" [min]="min" [ngModel]="model" (blur)="onTouched()" (keydown)="onlyUpDown($event)" (ngModelChange)="changeModel($event)" />

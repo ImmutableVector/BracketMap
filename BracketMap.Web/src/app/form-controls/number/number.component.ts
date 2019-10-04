@@ -1,5 +1,5 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, Validator, NG_VALIDATORS, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'bm-number[label][name]',
@@ -7,13 +7,18 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
   styleUrls: ['./number.component.scss'],
   providers: [
     {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => NumberComponent),
+      multi: true
+    },
+    {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => NumberComponent),
       multi: true
     }
   ]
 })
-export class NumberComponent implements ControlValueAccessor {
+export class NumberComponent implements ControlValueAccessor, Validator {
   @Input() label!: string;
   @Input() name!: string;
   @Input() max = 100;
@@ -27,6 +32,12 @@ export class NumberComponent implements ControlValueAccessor {
   changeModel(value: number | null) {
     this.model = value;
     this.onChange(this.model);
+  }
+
+  onlyUpDown(event: KeyboardEvent) {
+    if (event.code !== 'ArrowUp' && event.code !== 'ArrowDown') {
+      event.preventDefault();
+    }
   }
 
   onChange(_value: number | null) {
@@ -45,12 +56,32 @@ export class NumberComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
+  validate(): ValidationErrors | null {
+    if (this.model === null) {
+      if (this.required) {
+        return { required: true };
+      }
+      return null;
+    }
+
+    if (this.model > this.max) {
+      return { max: true };
+    }
+
+    if (this.model < this.min) {
+      return { min: true };
+    }
+
+    return null;
+  }
+
   writeValue(value: any): void {
     if (value === null) {
       this.model = value;
+      return;
     }
 
-    if (typeof value === 'number') {
+    if (typeof value !== 'number') {
       throw new Error('form control expects a number');
     }
 
