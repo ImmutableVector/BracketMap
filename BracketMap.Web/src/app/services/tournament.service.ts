@@ -22,18 +22,24 @@ export class TournamentService {
       }));
   }
 
-  // post(model: Tournament): Observable<number> {
-  //   return this.httpService.post<number>('Tournament', model)
-  //     .pipe(map(response => response.body));
-  // }
+  post(model: Tournament): Observable<number> {
+    return this.httpService.post<number>('Tournament', model)
+      .pipe(map(response => {
+        if (response.body === null) {
+          throw new Error(response.status.toString());
+        }
 
-  // put(model: Tournament): Observable<null> {
-  //   return this.httpService.put<null>('Tournament', model)
-  //     .pipe(map(response => response.body));
-  // }
+        return response.body;
+      }));
+  }
 
-  // delete(id: number): Observable<null> {
-  //   return this.httpService.delete<null>('Tournament', { id: id.toString() })
-  //     .pipe(map(response => response.body));
-  // }
+  put(model: Tournament): Observable<null> {
+    return this.httpService.put<null>('Tournament', model)
+      .pipe(map(response => response.body));
+  }
+
+  delete(id: number): Observable<null> {
+    return this.httpService.delete<null>('Tournament', { id: id.toString() })
+      .pipe(map(response => response.body));
+  }
 }

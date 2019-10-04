@@ -1,5 +1,5 @@
 export class Tournament {
-  id: number | null = null;
+  id = 0;
   name: string | null = null;
   playerCount: number | null = 1;
   teamCount: number | null = 2;
