@@ -19,6 +19,7 @@ namespace BracketMap.DAL.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int PlayerCount { get; set; }
+        public int TeamCount { get; set; }
     }
 
     public class BracketData
