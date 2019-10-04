@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '.';
 import { Tournament } from '../models';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,20 +11,16 @@ export class TournamentService {
   constructor(private httpService: HttpService) { }
 
   get(id: number): Observable<Tournament> {
-    return this.httpService.get<Tournament>('Tournament', { id: id.toString() })
-      .pipe(map(response => {
-        if (response.body === null) {
-          throw new Error(response.status.toString());
-        }
-
-        return response.body;
-      }));
+    return this.httpService.get<Tournament>('Tournament', { id: id.toString() });
   }
 
-  // post(model: Tournament): Observable<number> {
-  //   return this.httpService.post<number>('Tournament', model)
-  //     .pipe(map(response => response.body));
-  // }
+  getAll(): Observable<Tournament[]> {
+    return this.httpService.get('Tournament/All');
+  }
+
+  post(model: Tournament): Observable<number> {
+    return this.httpService.post<number>('Tournament', model);
+  }
 
   // put(model: Tournament): Observable<null> {
   //   return this.httpService.put<null>('Tournament', model)

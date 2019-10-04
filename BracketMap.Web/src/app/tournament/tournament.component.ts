@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../services';
-import { map } from 'rxjs/operators';
+import { TournamentService } from '../services';
 import { Tournament } from '../models';
 
 @Component({
@@ -11,18 +10,11 @@ import { Tournament } from '../models';
 export class TournamentComponent implements OnInit {
   tournaments: Tournament[] = [];
 
-  constructor(private httpService: HttpService) { }
+  constructor(private tournamentService: TournamentService) { }
 
   ngOnInit(): void {
-    this.httpService.get<Tournament[]>(`Tournament/All`)
-      .pipe(map(response => {
-        if (response.body === null) {
-          throw new Error(response.status.toString());
-        }
-        return response.body;
-      }))
-      .subscribe(data => {
-        this.tournaments = data;
-      });
+    this.tournamentService.getAll().subscribe(data => {
+      console.log(data);
+    });
   }
 }
