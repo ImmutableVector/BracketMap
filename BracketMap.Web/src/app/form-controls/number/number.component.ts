@@ -35,7 +35,7 @@ export class NumberComponent implements ControlValueAccessor, Validator {
   }
 
   onlyUpDown(event: KeyboardEvent) {
-    if (event.code !== 'ArrowUp' && event.code !== 'ArrowDown') {
+    if (event.code !== 'ArrowUp' && event.code !== 'ArrowDown' && event.code !== 'Tab') {
       event.preventDefault();
     }
   }
