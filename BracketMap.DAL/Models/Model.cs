@@ -20,6 +20,7 @@ namespace BracketMap.DAL.Models
         public string Name { get; set; }
         public int PlayerCount { get; set; }
         public int TeamCount { get; set; }
+        public string Status { get; set; }
     }
 
     public class BracketData
