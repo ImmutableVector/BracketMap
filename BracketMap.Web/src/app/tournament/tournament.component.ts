@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TournamentService } from '../services';
-import { Tournament } from '../models';
+import { TournamentEnum, Tournament } from '../models';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'bm-tournament',
@@ -8,13 +9,19 @@ import { Tournament } from '../models';
   styleUrls: ['./tournament.component.scss']
 })
 export class TournamentComponent implements OnInit {
-  tournaments: Tournament[] = [];
+  activeTournaments: Tournament[] = [];
+  pendingTournaments: Tournament[] = [];
+  completedTournaments: Tournament[] = [];
 
   constructor(private tournamentService: TournamentService) { }
 
   ngOnInit(): void {
-    this.tournamentService.getAll().subscribe(data => {
-      console.log(data);
-    });
+    this.tournamentService.getAll()
+      .pipe(map(tournaments => {
+        this.completedTournaments = tournaments.filter(tournament => tournament.status === TournamentEnum.Complete);
+        this.pendingTournaments = tournaments.filter(tournament => tournament.status === TournamentEnum.Pending);
+        this.activeTournaments = tournaments.filter(tournament => tournament.status === TournamentEnum.Active);
+      }))
+      .subscribe();
   }
 }

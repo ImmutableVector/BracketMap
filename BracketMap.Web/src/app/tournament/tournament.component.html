@@ -1,8 +1,11 @@
-<h3>
+<h1>
   Active Tournaments
-</h3>
+</h1>
 
-<table>
+<div *ngIf="activeTournaments.length === 0">
+  No shit here
+</div>
+<table *ngIf="activeTournaments.length > 0">
   <thead>
     <tr>
       <th>Name</th>
@@ -12,20 +15,27 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+    <tr *ngFor="let item of activeTournaments">
+      <td>{{item.name}}</td>
+      <td>{{item.playerCount}}</td>
+      <td>{{item.teamCount}}</td>
+      <td>
+        <a>
+          ⚔️
+        </a>
+      </td>
     </tr>
   </tbody>
 </table>
 
-<h3>
-  Open Tournaments
-</h3>
+<h1>
+  Pending Tournaments
+</h1>
 
-<table>
+<div *ngIf="pendingTournaments.length === 0">
+  No shit here
+</div>
+<table *ngIf="pendingTournaments.length > 0">
   <thead>
     <tr>
       <th>Name</th>
@@ -35,11 +45,43 @@
     </tr>
   </thead>
   <tbody>
+    <tr *ngFor="let item of pendingTournaments">
+      <td>{{item.name}}</td>
+      <td>{{item.playerCount}}</td>
+      <td>{{item.teamCount}}</td>
+      <td>
+        <a>
+          🛡️
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>Completed Tournaments</h1>
+
+<div *ngIf="completedTournaments.length === 0">
+  No shit here
+</div>
+<table *ngIf="completedTournaments.length > 0">
+  <thead>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <th>Name</th>
+      <th>Player per Team</th>
+      <th>Team per Fight</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of completedTournaments">
+      <td>{{item.name}}</td>
+      <td>{{item.playerCount}}</td>
+      <td>{{item.teamCount}}</td>
+      <td>
+        <a>
+          🗺️
+        </a>
+      </td>
     </tr>
   </tbody>
 </table>

@@ -1,7 +1,7 @@
 <h1>New Tournament</h1>
 <br />
 <form #form="ngForm" (ngSubmit)="create()">
-  <bm-text [(ngModel)]="model.name" name="name" label="Name" [required]="true"></bm-text>
+  <bm-text [(ngModel)]="model.name" name="name" label="Tournament Name" [required]="true"></bm-text>
   <br />
   <br />
   <bm-number [(ngModel)]="model.playerCount" name="playerCount" label="Number of people per team" [required]="true" [max]="6" [min]="1"></bm-number>

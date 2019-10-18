@@ -11,6 +11,7 @@ import { HttpService } from './services';
 import { NewComponent } from './tournament/new/new.component';
 import { FightComponent } from './fight/fight.component';
 import { TextComponent, NumberComponent } from './form-controls';
+import { PendingComponent } from './tournament/pending/pending.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TextComponent, NumberComponent } from './form-controls';
     NewComponent,
     FightComponent,
     TextComponent,
-    NumberComponent
+    NumberComponent,
+    PendingComponent
   ],
   imports: [
     AppRoutingModule,
