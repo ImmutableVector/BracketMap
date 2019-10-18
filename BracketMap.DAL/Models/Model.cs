@@ -10,8 +10,8 @@ namespace BracketMap.DAL.Models
         { }
 
         public DbSet<Tournament> Tournaments { get; set; }
-        public DbSet<BracketData> NodeMaps { get; set; }
-        public DbSet<Player> Players { get; set; }
+        public DbSet<Bracket> Brackets { get; set; }
+        public DbSet<Team> Teams { get; set; }
     }
 
     public class Tournament
@@ -23,17 +23,18 @@ namespace BracketMap.DAL.Models
         public string Status { get; set; }
     }
 
-    public class BracketData
+    public class Bracket
     {
         public int Id { get; set; }
         public int TournamentId { get; set; }
-        public ICollection<Player> PlayerId { get; set; }
+        public string TeamIds { get; set; }
         public int Victor { get; set; }
-    }
 
-    public class Player
+    }
+    public class Team
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string TeamName { get; set; }
+        public string Players { get; set; }
     }
 }
