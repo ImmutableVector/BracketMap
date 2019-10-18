@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BracketMap.DAL.Models;
+using BracketMap.DAL.Dtos;
 
 namespace BracketMap.Web.Controllers
 {
@@ -25,14 +26,22 @@ namespace BracketMap.Web.Controllers
 
         // GET: tournaments
         [HttpGet("All")]
-        public async Task<ActionResult<IEnumerable<Tournament>>> GetTournaments()
+        public async Task<ActionResult<IEnumerable<TournamentDto>>> GetTournaments()
         {
-            return await _context.Tournaments.ToListAsync();
+            return await _context.Tournaments
+                .Select(x => new TournamentDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    PlayerCount = x.PlayerCount,
+                    TeamCount = x.TeamCount,
+                    Status = x.Status
+                }).ToListAsync();
         }
 
         // GET: tournaments/1
         [HttpGet]
-        public async Task<ActionResult<Tournament>> GetTournament(int id)
+        public async Task<ActionResult<TournamentDto>> GetTournament(int id)
         {
             var tournament = await _context.Tournaments.FindAsync(id);
 
@@ -41,17 +50,17 @@ namespace BracketMap.Web.Controllers
                 return NotFound();
             }
 
-            return tournament;
+            return TournamentDto.ToModel(tournament);
         }
 
         // PUT: tournaments/1
         [HttpPut]
-        public async Task<IActionResult> PutTournament(Tournament tournament)
+        public async Task<IActionResult> PutTournament(TournamentDto tournament)
         {
-            //if (tournament.Id == null)
-            //{
-            //    return BadRequest();
-            //}
+            if (tournament.Id == null)
+            {
+                return BadRequest();
+            }
 
             _context.Entry(tournament).State = EntityState.Modified;
 
@@ -61,7 +70,7 @@ namespace BracketMap.Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TournamentExists(tournament.Id))
+                if (!TournamentExists(tournament.Id ?? 0))
                 {
                     return NotFound();
                 }
@@ -76,12 +85,14 @@ namespace BracketMap.Web.Controllers
 
         // POST: tournaments
         [HttpPost]
-        public async Task<ActionResult<int>> PostTournament(Tournament tournament)
+        public async Task<ActionResult<int>> PostTournament(TournamentDto tournament)
         {
-            _context.Tournaments.Add(tournament);
+            tournament.Status = "Pending";
+            var entity = tournament.ToEntity();
+            _context.Tournaments.Add(entity);
             await _context.SaveChangesAsync();
 
-            return tournament.Id;
+            return entity.Id;
         }
 
         // DELETE: tournaments/1
