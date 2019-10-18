@@ -1,5 +1,5 @@
 export enum TournamentEnum {
-  Pending,
-  Active,
-  Complete
+  Pending = 'Pending',
+  Active = 'Active',
+  Complete = 'Complete'
 }

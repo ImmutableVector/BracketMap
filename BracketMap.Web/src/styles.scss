@@ -16,6 +16,8 @@ button {
   background: white;
   color: black;
   cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
 
   &:disabled {
     opacity: 0.4;
@@ -42,4 +44,16 @@ input {
   background: white;
   border: 1px solid black;
   border-radius: 0.25rem;
+}
+
+table {
+  width: 100%;
+
+  th {
+    text-align: left;
+  }
+}
+
+.text-right {
+  text-align: right;
 }
