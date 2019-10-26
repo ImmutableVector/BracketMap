@@ -12,6 +12,7 @@ import { NewComponent } from './tournament/new/new.component';
 import { FightComponent } from './fight/fight.component';
 import { TextComponent, NumberComponent } from './form-controls';
 import { PendingComponent } from './tournament/pending/pending.component';
+import { TournamentFightModule } from './tournament-fight/tournament-fight.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PendingComponent } from './tournament/pending/pending.component';
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    TournamentFightModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent, NavComponent]

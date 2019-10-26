@@ -1,0 +1,20 @@
+ .row {
+   display: flex;
+   flex-direction: row;
+   position: absolute;
+   top: 85.273px;
+   bottom: 0;
+   right: 0;
+   left: 0;
+ }
+
+ .row>* {
+   flex-grow: 1;
+ }
+
+ @media (orientation: portrait) {
+   .row {
+     display: flex;
+     flex-direction: column;
+   }
+ }
