@@ -16,6 +16,7 @@ export class PendingComponent implements OnInit {
   ngOnInit() {
     // get some players have already signed up
     // after that generate a randomName
+    this.teamName = this.randomName;
   }
 
   addPlayer() {
