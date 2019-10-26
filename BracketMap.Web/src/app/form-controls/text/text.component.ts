@@ -51,9 +51,10 @@ export class TextComponent implements ControlValueAccessor {
   writeValue(value: any) {
     if (value === null) {
       this.model = value;
+      return;
     }
 
-    if (typeof value === 'string') {
+    if (typeof value !== 'string') {
       throw new Error('form control expects a string');
     }
 
