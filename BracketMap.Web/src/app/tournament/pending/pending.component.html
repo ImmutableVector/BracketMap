@@ -26,9 +26,9 @@
 </table> -->
 
 <form #form="ngForm">
-  <bm-text [(ngModel)]="teamName" name="teamName" label="Team Name"></bm-text>
+  <bm-text [(ngModel)]="teamName" name="teamName" label="Team Name" [required]="true"></bm-text>
   <br />
-  <bm-text [(ngModel)]="name" name="name" label="Player Name"></bm-text>
+  <bm-text [(ngModel)]="name" name="name" label="Player Name" [required]="true"></bm-text>
 </form>
 <br />
 <button type="button" [disabled]="form.valid === false" (click)="addPlayer()">
