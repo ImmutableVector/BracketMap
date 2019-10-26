@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { Tournament } from '../../models';
+import { Tournament } from 'src/app/models';
 import { TournamentService } from 'src/app/services';
 
 @Component({
@@ -11,11 +12,10 @@ import { TournamentService } from 'src/app/services';
 export class NewComponent {
   model = new Tournament();
 
-  constructor(private tournamentService: TournamentService) { }
+  constructor(private router: Router, private tournamentService: TournamentService) { }
 
   create() {
-    this.tournamentService.post(this.model).subscribe(id => {
-      console.log(id);
-    });
+    this.tournamentService.post(this.model)
+      .subscribe(id => this.router.navigate(['tournament', id, 'pending']));
   }
 }
