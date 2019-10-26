@@ -16,7 +16,6 @@ namespace BracketMap.DAL.Dtos
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                PlayerCount = entity.PlayerCount,
                 TeamCount = entity.TeamCount,
                 Status = entity.Status
             };
@@ -28,7 +27,6 @@ namespace BracketMap.DAL.Dtos
             {
                 Id = Id ?? 0,
                 Name = Name,
-                PlayerCount = PlayerCount,
                 TeamCount = TeamCount,
                 Status = Status
             };

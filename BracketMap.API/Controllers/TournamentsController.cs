@@ -33,7 +33,6 @@ namespace BracketMap.Web.Controllers
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    PlayerCount = x.PlayerCount,
                     TeamCount = x.TeamCount,
                     Status = x.Status
                 }).ToListAsync();

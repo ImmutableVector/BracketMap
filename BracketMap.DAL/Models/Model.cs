@@ -18,7 +18,6 @@ namespace BracketMap.DAL.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int PlayerCount { get; set; }
         public int TeamCount { get; set; }
         public string Status { get; set; }
     }
@@ -31,9 +30,11 @@ namespace BracketMap.DAL.Models
         public int Victor { get; set; }
 
     }
+    
     public class Team
     {
         public int Id { get; set; }
+        public int TournamentId { get; set; }
         public string TeamName { get; set; }
         public string Players { get; set; }
     }
