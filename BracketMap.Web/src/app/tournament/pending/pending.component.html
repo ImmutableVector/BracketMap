@@ -1,8 +1,38 @@
 <!-- {{tournament.name}} -->
 <h1>Pending Tournament</h1>
-<bm-text [(ngModel)]="name" name="name" label="Player Name"></bm-text>
-<button type="button" (click)="addPlayer()">
-  ➕
+
+<!-- <div *ngIf="activeTournaments.length === 0">
+  No shit here
+</div>
+<table *ngIf="activeTournaments.length > 0">
+  <thead>
+    <tr>
+      <th>Team Name</th>
+      <th>Player Names</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of activeTournaments">
+      <td>{{item.name}}</td>
+      <td>{{item.playerCount}}</td>
+      <td>{{item.teamCount}}</td>
+      <td>
+        <a class="text-right">
+          ⚔️
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+
+<form #form="ngForm">
+  <bm-text [(ngModel)]="teamName" name="teamName" label="Team Name" [required]="true"></bm-text>
+  <br />
+  <bm-text [(ngModel)]="name" name="name" label="Player Name" [required]="true"></bm-text>
+</form>
+<br />
+<button type="button" [disabled]="form.valid === false" (click)="addPlayer()">
+  ➕ Add Player
 </button>
 <!-- <div *ngFor="let team of tournament.teams">
   <div *ngFor="let player of team">
