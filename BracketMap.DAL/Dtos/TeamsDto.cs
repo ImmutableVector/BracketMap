@@ -1,4 +1,5 @@
-﻿using BracketMap.DAL.Models;
+﻿using System.Collections.Generic;
+using BracketMap.DAL.Entities;
 
 namespace BracketMap.DAL.Dtos
 {
@@ -7,28 +8,33 @@ namespace BracketMap.DAL.Dtos
         public int? Id { get; set; }
         public int TournamentId { get; set; }
         public string TeamName { get; set; }
-        public string Players { get; set; }
+        public List<int> Players { get; set; }
 
-        public static TeamsDto ToModel(Team entity)
-        {
-            return new TeamsDto
-            {
-                Id = entity.Id,
-                TournamentId = entity.TournamentId,
-                TeamName = entity.TeamName,
-                Players = entity.Players,
-            };
-        }
+        //public static TeamsDto ToModel(Team entity)
+        //{
+        //    return new TeamsDto
+        //    {
+        //        Id = entity.Id,
+        //        TournamentId = entity.TournamentId,
+        //        TeamName = entity.TeamName,
+        //        Players = entity.Players.Select( p => new PlayerDto { Id = p.}),
+        //    };
+        //}
 
-        public Team ToEntity()
-        {
-            return new Team
-            {
-                Id = Id ?? 0,
-                TournamentId = TournamentId,
-                TeamName = TeamName,
-                Players = Players,
-            };
-        }
+        //public Team ToEntity()
+        //{
+        //    return new Team
+        //    {
+        //        Id = Id ?? 0,
+        //        TournamentId = TournamentId,
+        //        TeamName = TeamName,
+        //        Players = Players.,
+        //    };
+        //}
+
+        //public TeamsDto GetTeamsByTournamentId(int TournamentId)
+        //{
+        //    using new 
+        //}
     }
 }

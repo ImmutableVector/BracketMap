@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+﻿using BracketMap.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace BracketMap.DAL.Models
 {
@@ -9,33 +9,27 @@ namespace BracketMap.DAL.Models
             : base(options)
         { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Player>()
+                .HasOne(t => t.Team)
+                .WithMany(p => p.Players)
+                .HasForeignKey(t => t.TeamId);
+
+            modelBuilder.Entity<Team>()
+                .HasOne(t => t.Tournament)
+                .WithMany(x => x.Teams)
+                .HasForeignKey(t => t.TournamentId);
+
+            modelBuilder.Entity<Fight>()
+                .HasOne(t => t.Tournament)
+                .WithMany(f => f.Fights)
+                .HasForeignKey(t => t.TournamentId);
+        }
+
         public DbSet<Tournament> Tournaments { get; set; }
-        public DbSet<Bracket> Brackets { get; set; }
+        public DbSet<Fight> Fights { get; set; }
         public DbSet<Team> Teams { get; set; }
-    }
-
-    public class Tournament
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int TeamCount { get; set; }
-        public string Status { get; set; }
-    }
-
-    public class Bracket
-    {
-        public int Id { get; set; }
-        public int TournamentId { get; set; }
-        public string TeamIds { get; set; }
-        public int Victor { get; set; }
-
-    }
-    
-    public class Team
-    {
-        public int Id { get; set; }
-        public int TournamentId { get; set; }
-        public string TeamName { get; set; }
-        public string Players { get; set; }
+        public DbSet<Player> Players { get; set; }
     }
 }
