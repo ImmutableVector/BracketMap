@@ -11,7 +11,11 @@ export class TeamService {
   constructor(private httpService: HttpService) { }
 
   get(tournamentId: number): Observable<Team> {
-    return this.httpService.get<Team>('Team', { tournamentId: tournamentId.toString() });
+    return this.httpService.get<Team>('Team/GetTeamsByTournamentId', { tournamentId: tournamentId.toString() });
+  }
+
+  post(model: Team): Observable<void> {
+    return this.httpService.post<void>('Team', model);
   }
 
   // put(model: Tournament): Observable<null> {

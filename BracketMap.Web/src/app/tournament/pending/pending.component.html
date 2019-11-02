@@ -14,13 +14,7 @@
   <tbody>
     <tr *ngFor="let item of activeTournaments">
       <td>{{item.name}}</td>
-      <td>{{item.playerCount}}</td>
-      <td>{{item.teamCount}}</td>
-      <td>
-        <a class="text-right">
-          ⚔️
-        </a>
-      </td>
+      <td>{{item.playerNames.join()}}</td>
     </tr>
   </tbody>
 </table> -->
@@ -34,8 +28,3 @@
 <button type="button" [disabled]="form.valid === false" (click)="addPlayer()">
   ➕ Add Player
 </button>
-<!-- <div *ngFor="let team of tournament.teams">
-  <div *ngFor="let player of team">
-
-  </div>
-</div> -->
