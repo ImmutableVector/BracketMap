@@ -5,10 +5,10 @@ namespace BracketMap.DAL.Dtos
 {
     public class TeamsDto
     {
-        //public int? Id { get; set; }
-        //public int TournamentId { get; set; }
-        //public string TeamName { get; set; }
-        //public List<int> Players { get; set; }
+        public int? Id { get; set; }
+        public int TournamentId { get; set; }
+        public string TeamName { get; set; }
+        public List<int> Players { get; set; }
 
         //public static TeamsDto ToModel(Team entity)
         //{
@@ -17,7 +17,7 @@ namespace BracketMap.DAL.Dtos
         //        Id = entity.Id,
         //        TournamentId = entity.TournamentId,
         //        TeamName = entity.TeamName,
-        //        Players = entity.Players,
+        //        Players = entity.Players.Select( p => new PlayerDto { Id = p.}),
         //    };
         //}
 
@@ -28,8 +28,13 @@ namespace BracketMap.DAL.Dtos
         //        Id = Id ?? 0,
         //        TournamentId = TournamentId,
         //        TeamName = TeamName,
-        //        Players = Players,
+        //        Players = Players.,
         //    };
+        //}
+
+        //public TeamsDto GetTeamsByTournamentId(int TournamentId)
+        //{
+        //    using new 
         //}
     }
 }

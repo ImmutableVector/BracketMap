@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TournamentService {
-
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService) {}
 
   get(id: number): Observable<Tournament> {
     return this.httpService.get<Tournament>('Tournament', { id: id.toString() });
@@ -19,7 +18,7 @@ export class TournamentService {
   }
 
   post(model: Tournament): Observable<number> {
-    return this.httpService.post<number>('Tournament', model);
+    return this.httpService.post<number>('Tournament/SaveTournament', model);
   }
 
   // put(model: Tournament): Observable<null> {
