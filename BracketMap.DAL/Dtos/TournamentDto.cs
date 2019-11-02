@@ -1,4 +1,4 @@
-﻿using BracketMap.DAL.Models;
+﻿using BracketMap.DAL.Entities;
 
 namespace BracketMap.DAL.Dtos
 {

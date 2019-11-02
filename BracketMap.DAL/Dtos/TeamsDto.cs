@@ -1,4 +1,5 @@
-﻿using BracketMap.DAL.Models;
+﻿using System.Collections.Generic;
+using BracketMap.DAL.Entities;
 
 namespace BracketMap.DAL.Dtos
 {
@@ -7,7 +8,7 @@ namespace BracketMap.DAL.Dtos
         public int? Id { get; set; }
         public int TournamentId { get; set; }
         public string TeamName { get; set; }
-        public string Players { get; set; }
+        public List<int> Players { get; set; }
 
         public static TeamsDto ToModel(Team entity)
         {
