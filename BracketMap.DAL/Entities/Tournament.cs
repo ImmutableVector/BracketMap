@@ -10,5 +10,6 @@ namespace BracketMap.DAL.Entities
         public int TeamCount { get; set; }
         public string Status { get; set; }
         public ICollection<Fight> Fights { get; set; }
+        public ICollection<Team> Teams { get; set; }
     }
 }
