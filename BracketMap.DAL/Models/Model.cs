@@ -15,6 +15,11 @@ namespace BracketMap.DAL.Models
                 .HasOne(t => t.Team)
                 .WithMany(p => p.Players)
                 .HasForeignKey(t => t.TeamId);
+
+            modelBuilder.Entity<Fight>()
+                .HasOne(t => t.Tournament)
+                .WithMany(f => f.Fights)
+                .HasForeignKey(t => t.TournamentId);
         }
 
         public DbSet<Tournament> Tournaments { get; set; }
