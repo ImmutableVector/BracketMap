@@ -9,6 +9,14 @@ namespace BracketMap.DAL.Models
             : base(options)
         { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Player>()
+                .HasOne(t => t.Team)
+                .WithMany(p => p.Players)
+                .HasForeignKey(t => t.TeamId);
+        }
+
         public DbSet<Tournament> Tournaments { get; set; }
         public DbSet<Fight> Fights { get; set; }
         public DbSet<Team> Teams { get; set; }

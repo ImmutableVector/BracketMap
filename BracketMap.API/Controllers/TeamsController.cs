@@ -24,28 +24,28 @@ namespace BracketMap.Web.Controllers
         }
 
         // GET: Team
-        [HttpGet("GetTeamsByTournamentId")]
-        public async Task<ActionResult<IEnumerable<TeamsDto>>> GetTeams(int tournamentId)
-        {
-            return await _context.Teams
-                .Where(x => x.TournamentId == tournamentId)
-                .Select( x => new TeamsDto()
-                {
-                    Id = x.Id,
-                    TournamentId = x.TournamentId,
-                    TeamName = x.TeamName,
-                    Players = x.Players,
-                }).ToListAsync();
-        }
+        //[HttpGet("GetTeamsByTournamentId")]
+        //public async Task<ActionResult<IEnumerable<TeamsDto>>> GetTeams(int tournamentId)
+        //{
+        //    return await _context.Teams
+        //        .Where(x => x.TournamentId == tournamentId)
+        //        .Select( x => new TeamsDto()
+        //        {
+        //            Id = x.Id,
+        //            TournamentId = x.TournamentId,
+        //            TeamName = x.TeamName,
+        //            Players = x.Players,
+        //        }).ToListAsync();
+        //}
 
-        [HttpPost]
-        public async Task<ActionResult> PostTournament(TeamsDto team)
-        {
-            var entity = team.ToEntity();
-            _context.Teams.Add(entity);
-            await _context.SaveChangesAsync();
+        //[HttpPost]
+        //public async Task<ActionResult> PostTournament(TeamsDto team)
+        //{
+        //    var entity = team.ToEntity();
+        //    _context.Teams.Add(entity);
+        //    await _context.SaveChangesAsync();
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
     }
 }

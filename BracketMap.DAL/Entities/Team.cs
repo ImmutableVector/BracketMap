@@ -7,6 +7,6 @@ namespace BracketMap.DAL.Entities
         public int Id { get; set; }
         public int TournamentId { get; set; }
         public string TeamName { get; set; }
-        public List<int> Players { get; set; }
+        public ICollection<Player> Players { get; set; }
     }
 }
