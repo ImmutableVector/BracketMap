@@ -4,10 +4,10 @@
   <bm-text [(ngModel)]="model.name" name="name" label="Tournament Name" [required]="true"></bm-text>
   <br />
   <br />
-  <bm-number [(ngModel)]="model.playerCount" name="playerCount" label="Number of people per team" [required]="true" [max]="6" [min]="1"></bm-number>
+  <bm-number [(ngModel)]="model.PlayersPerTeam" name="playersPerFight" label="Number of people per team" [required]="true" [max]="6" [min]="1"></bm-number>
   <br />
   <br />
-  <bm-number [(ngModel)]="model.teamCount" name="teamCount" label="Number of teams per fight" [required]="true" [max]="2" [min]="2"></bm-number>
+  <bm-number [(ngModel)]="model.TeamsPerFight" name="teamsPerFight" label="Number of teams per fight" [required]="true" [max]="2" [min]="2"></bm-number>
   <br />
   <br />
   <button type="submit" [disabled]="!form.valid">
