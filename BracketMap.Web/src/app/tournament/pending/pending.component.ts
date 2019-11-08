@@ -13,6 +13,7 @@ export class PendingComponent implements OnInit {
   name: string | null = null;
   id: number = +this.activatedRoute.snapshot.params.id;
   tournament?: Tournament;
+  players: { name: string | null }[] = [];
 
   constructor(private activatedRoute: ActivatedRoute, private tournamentService: TournamentService) { }
 
@@ -20,6 +21,7 @@ export class PendingComponent implements OnInit {
     this.tournamentService.get(this.id).subscribe({
       next: data => {
         this.tournament = data;
+        this.players = new Array(data.playersPerTeam).fill(null).map(() => ({ name: null }));
       },
       error: error => console.error(error)
     });

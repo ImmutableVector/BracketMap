@@ -26,9 +26,11 @@
 <form #form="ngForm">
   <bm-text [(ngModel)]="teamName" name="teamName" label="Team Name" [required]="true"></bm-text>
   <br />
-  <bm-text [(ngModel)]="name" name="name" label="Player Name" [required]="true"></bm-text>
+  <div *ngFor="let player of players; let idx = index" class="players">
+    <bm-text [(ngModel)]="player.name" name="name{{idx}}" label="Player {{idx + 1}} Name" [required]="true"></bm-text>
+    <br />
+  </div>
 </form>
-<br />
 <button type="button" [disabled]="form.valid === false" (click)="addPlayer()">
   ➕ Add Team
 </button>
