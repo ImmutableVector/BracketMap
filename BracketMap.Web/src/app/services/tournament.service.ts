@@ -18,7 +18,7 @@ export class TournamentService {
   }
 
   post(model: Tournament): Observable<number> {
-    return this.httpService.post<number>('Tournament/SaveTournament', model);
+    return this.httpService.post<number>('Tournament/Create', model);
   }
 
   // put(model: Tournament): Observable<null> {

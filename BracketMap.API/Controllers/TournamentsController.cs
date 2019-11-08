@@ -72,7 +72,7 @@ namespace BracketMap.Web.Controllers
         //}
 
         // POST: tournaments
-        [HttpPost("SaveTournament")]
+        [HttpPost("Create")]
         public async Task<ActionResult<int>> PostTournament(TournamentDto dto)
             => Ok(await _tournamentService.SaveTournament(dto));
 
