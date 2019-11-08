@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TournamentService } from 'src/app/services';
+import { Tournament } from 'src/app/models';
 
 @Component({
   selector: 'bm-pending',
@@ -10,12 +12,17 @@ export class PendingComponent implements OnInit {
   teamName: string | null = null;
   name: string | null = null;
   id: number = +this.activatedRoute.snapshot.params.id;
+  tournament?: Tournament;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private tournamentService: TournamentService) { }
 
   ngOnInit() {
-    // get some players have already signed up
-    // after that generate a randomName
+    this.tournamentService.get(this.id).subscribe({
+      next: data => {
+        this.tournament = data;
+      },
+      error: error => console.error(error)
+    });
     this.teamName = this.randomName;
   }
 

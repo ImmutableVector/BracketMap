@@ -7,14 +7,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TournamentService {
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService) { }
 
   get(id: number): Observable<Tournament> {
-    return this.httpService.get<Tournament>('Tournament', { id: id.toString() });
+    return this.httpService.get<Tournament>('Tournament/GetTournamentById', { id: id.toString() });
   }
 
   getAll(): Observable<Tournament[]> {
-    return this.httpService.get('Tournament/All');
+    return this.httpService.get('Tournament');
   }
 
   post(model: Tournament): Observable<number> {
