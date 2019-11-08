@@ -10,7 +10,7 @@ export class TournamentService {
   constructor(private httpService: HttpService) { }
 
   get(id: number): Observable<Tournament> {
-    return this.httpService.get<Tournament>('Tournament', { id: id.toString() });
+    return this.httpService.get<Tournament>(`Tournament/${id}`);
   }
 
   getAll(): Observable<Tournament[]> {
@@ -20,14 +20,4 @@ export class TournamentService {
   post(model: Tournament): Observable<number> {
     return this.httpService.post<number>('Tournament', model);
   }
-
-  // put(model: Tournament): Observable<null> {
-  //   return this.httpService.put<null>('Tournament', model)
-  //     .pipe(map(response => response.body));
-  // }
-
-  // delete(id: number): Observable<null> {
-  //   return this.httpService.delete<null>('Tournament', { id: id.toString() })
-  //     .pipe(map(response => response.body));
-  // }
 }
