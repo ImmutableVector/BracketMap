@@ -23,14 +23,12 @@ namespace BracketMap.DAL.Repositories
         public async Task<List<TournamentDto>> GetTournaments()
         {
             return await _context.Tournaments
-                .Include(x => x.Teams)
-                .Include(x => x.Fights)
                 .Select(x => new TournamentDto
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    TeamCount = x.TeamCount,
-                    PlayerCount = x.PlayerCount,
+                    TeamsPerFight = x.TeamsPerFight,
+                    PlayersPerTeam = x.PlayersPerTeam,
                     Status = x.Status,
                     Fights = x.Fights.ToList(),
                     Teams = x.Teams.ToList()
@@ -41,14 +39,12 @@ namespace BracketMap.DAL.Repositories
         public async Task<TournamentDto> GetTournamentById(int id)
         {
             return await _context.Tournaments
-                .Include(x => x.Teams)
-                .Include(x => x.Fights)
                 .Select(x => new TournamentDto
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    TeamCount = x.TeamCount,
-                    PlayerCount = x.PlayerCount,
+                    TeamsPerFight = x.TeamsPerFight,
+                    PlayersPerTeam = x.PlayersPerTeam,
                     Status = x.Status,
                     Fights = x.Fights.ToList(),
                     Teams = x.Teams.ToList()
