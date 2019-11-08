@@ -12,6 +12,7 @@ import { NewComponent } from './tournament/new/new.component';
 import { FightComponent } from './fight/fight.component';
 import { TextComponent, NumberComponent } from './form-controls';
 import { PendingComponent } from './tournament/pending/pending.component';
+import { FightFlexComponent } from './fight-flex/fight-flex.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PendingComponent } from './tournament/pending/pending.component';
     FightComponent,
     TextComponent,
     NumberComponent,
-    PendingComponent
+    PendingComponent,
+    FightFlexComponent
   ],
   imports: [
     AppRoutingModule,
