@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using BracketMap.DAL.Models;
 using BracketMap.DAL.Dtos;
 using BracketMap.Business.Services.Interfaces;
 
@@ -28,7 +24,7 @@ namespace BracketMap.Web.Controllers
             => Ok(await _tournamentService.GetTournaments());
 
         // GET: tournaments/1
-        [HttpGet("GetTournamentById")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<TournamentDto>> GetTournament(int id)
         {
             var tournament = await _tournamentService.GetTournamentById(id);
@@ -72,7 +68,7 @@ namespace BracketMap.Web.Controllers
         //}
 
         // POST: tournaments
-        [HttpPost("Create")]
+        [HttpPost]
         public async Task<ActionResult<int>> PostTournament(TournamentDto dto)
             => Ok(await _tournamentService.SaveTournament(dto));
 
