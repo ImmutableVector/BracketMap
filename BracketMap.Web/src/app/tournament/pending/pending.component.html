@@ -1,10 +1,10 @@
-<!-- {{tournament.name}} -->
-<h1>Pending Tournament</h1>
+<h1>{{tournament?.name}}</h1>
+<h4>Pending Tournament</h4>
 
-<!-- <div *ngIf="activeTournaments.length === 0">
-  No shit here
+<div *ngIf="tournament?.teams.length === 0">
+  No teams have signed up
 </div>
-<table *ngIf="activeTournaments.length > 0">
+<table *ngIf="tournament?.teams.length > 0">
   <thead>
     <tr>
       <th>Team Name</th>
@@ -12,18 +12,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of activeTournaments">
-      <td>{{item.name}}</td>
-      <td>{{item.playerCount}}</td>
-      <td>{{item.teamCount}}</td>
+    <tr *ngFor="let item of tournament?.teams">
+      <td>{{item.teamName}}</td>
       <td>
-        <a class="text-right">
-          ⚔️
-        </a>
+        Jimbo Slice, Bobo
       </td>
     </tr>
   </tbody>
-</table> -->
+</table>
+
+<h2>Add New Team</h2>
 
 <form #form="ngForm">
   <bm-text [(ngModel)]="teamName" name="teamName" label="Team Name" [required]="true"></bm-text>
@@ -32,10 +30,5 @@
 </form>
 <br />
 <button type="button" [disabled]="form.valid === false" (click)="addPlayer()">
-  ➕ Add Player
+  ➕ Add Team
 </button>
-<!-- <div *ngFor="let team of tournament.teams">
-  <div *ngFor="let player of team">
-
-  </div>
-</div> -->
