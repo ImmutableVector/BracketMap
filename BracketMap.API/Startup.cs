@@ -34,6 +34,9 @@ namespace BracketMap.API
             services.AddScoped<ITournamentService, TournamentService>();
             services.AddScoped<ITournamentRepository, TournamentRepository>();
 
+            services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
+
             services.AddControllers();
 
             var connection = @"Server=(localdb)\mssqllocaldb;Database=BracketMap;Trusted_Connection=True;ConnectRetryCount=0";

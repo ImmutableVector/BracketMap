@@ -10,17 +10,15 @@ namespace BracketMap.DAL.Dtos
         public int PlayersPerTeam { get; set; }
         public int TeamsPerFight { get; set; }
         public string Status { get; set; }
-        public List<Fight> Fights { get; set; }
-        public List<Team> Teams { get; set; }
+        public List<FightDto> Fights { get; set; }
+        public List<TeamDto> Teams { get; set; }
 
         public Tournament ToEntity(TournamentDto dto) => new Tournament
         {
             Name = dto.Name,
             PlayersPerTeam = dto.PlayersPerTeam,
             TeamsPerFight = dto.TeamsPerFight,
-            Status = dto.Status,
-            Fights = dto.Fights,
-            Teams = dto.Teams,
+            Status = dto.Status
         };
     }
 }

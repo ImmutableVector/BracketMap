@@ -23,15 +23,29 @@ namespace BracketMap.DAL.Repositories
         public async Task<List<TournamentDto>> GetTournaments()
         {
             return await _context.Tournaments
-                .Select(x => new TournamentDto
+                .Select(tournament => new TournamentDto
                 {
-                    Id = x.Id,
-                    Name = x.Name,
-                    TeamsPerFight = x.TeamsPerFight,
-                    PlayersPerTeam = x.PlayersPerTeam,
-                    Status = x.Status,
-                    Fights = x.Fights.ToList(),
-                    Teams = x.Teams.ToList()
+                    Id = tournament.Id,
+                    Name = tournament.Name,
+                    TeamsPerFight = tournament.TeamsPerFight,
+                    PlayersPerTeam = tournament.PlayersPerTeam,
+                    Status = tournament.Status,
+                    // Fights = x.Fights.SelectToList(),
+                    Teams = tournament.Teams
+                    .Select(team => new TeamDto
+                    {
+                        TournamentId = team.TournamentId,
+                        TeamName = team.TeamName,
+                        Players = team.Players
+                        .Select(player => new PlayerDto
+                        {
+                            Id = player.Id,
+                            TeamId = player.TeamId,
+                            Name = player.Name,
+                        })
+                        .ToList()
+                    })
+                    .ToList()
                 })
                 .ToListAsync();
         }
@@ -39,15 +53,29 @@ namespace BracketMap.DAL.Repositories
         public async Task<TournamentDto> GetTournamentById(int id)
         {
             return await _context.Tournaments
-                .Select(x => new TournamentDto
+                .Select(tournament => new TournamentDto
                 {
-                    Id = x.Id,
-                    Name = x.Name,
-                    TeamsPerFight = x.TeamsPerFight,
-                    PlayersPerTeam = x.PlayersPerTeam,
-                    Status = x.Status,
-                    Fights = x.Fights.ToList(),
-                    Teams = x.Teams.ToList()
+                    Id = tournament.Id,
+                    Name = tournament.Name,
+                    TeamsPerFight = tournament.TeamsPerFight,
+                    PlayersPerTeam = tournament.PlayersPerTeam,
+                    Status = tournament.Status,
+                    // Fights = x.Fights.ToList(),
+                    Teams = tournament.Teams
+                    .Select(team => new TeamDto
+                    { 
+                        TournamentId = team.TournamentId,
+                        TeamName = team.TeamName,
+                        Players = team.Players
+                        .Select(player => new PlayerDto
+                        {
+                            Id = player.Id,
+                            TeamId = player.TeamId,
+                            Name = player.Name,
+                        })
+                        .ToList()
+                    })
+                    .ToList()
                 })
                 .SingleOrDefaultAsync(x=> x.Id == id);
         }

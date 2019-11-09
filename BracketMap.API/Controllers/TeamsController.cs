@@ -6,38 +6,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BracketMap.DAL.Models;
 using BracketMap.DAL.Dtos;
+using BracketMap.Business.Services.Interfaces;
 
 namespace BracketMap.Web.Controllers
 {
     [Route("team")]
     [ApiController]
-
-    // TODO: Right now I am just using the db context directly in the controller, this needs to be refactored into the n-tier 
-    // layers and is only acting as a poc. Once we commit to the primary design, we can get this cleaned up.
     public class TeamsController : ControllerBase
     {
-        //private readonly BracketMapContext _context;
+        private readonly ITeamService _teamService;
 
-        //public TeamsController(BracketMapContext context)
-        //{
-        //    _context = context;
-        //}
+        public TeamsController(ITeamService teamService)
+        {
+            _teamService = teamService;
+        }
 
-        //// GET: Team
-        //[HttpGet("GetTeamsByTournamentId")]
-        //public async Task<ActionResult<IEnumerable<TeamsDto>>> GetTeams(int tournamentId)
-        //{
-            
-        //}
+        [HttpPost]
+        public async Task<ActionResult<int>> PostTeam(TeamDto dto)
+        => Ok(await _teamService.SaveTeam(dto));
 
-        //[HttpPost]
-        //public async Task<ActionResult> PostTournament(TeamsDto team)
-        //{
-        //    //var entity = team.ToEntity();
-        //    //_context.Teams.Add(entity);
-        //    //await _context.SaveChangesAsync();
-
-        //    //return Ok();
-        //}
     }
 }
