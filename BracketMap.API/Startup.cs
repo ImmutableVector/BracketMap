@@ -37,6 +37,9 @@ namespace BracketMap.API
             services.AddScoped<ITeamService, TeamService>();
             services.AddScoped<ITeamRepository, TeamRepository>();
 
+            services.AddScoped<IPlayerService, PlayerService>();
+            services.AddScoped<IPlayerRepository, PlayerRepository>();
+
             services.AddControllers();
 
             var connection = @"Server=(localdb)\mssqllocaldb;Database=BracketMap;Trusted_Connection=True;ConnectRetryCount=0";
