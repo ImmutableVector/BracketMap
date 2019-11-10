@@ -21,16 +21,10 @@ namespace BracketMap.DAL.Migrations
 
             modelBuilder.Entity("BracketMap.DAL.Entities.Fight", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FightId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Team1Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Team2Id")
-                        .HasColumnType("int");
 
                     b.Property<int>("TournamentId")
                         .HasColumnType("int");
@@ -38,11 +32,26 @@ namespace BracketMap.DAL.Migrations
                     b.Property<int?>("WinnerTeamId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("FightId");
 
                     b.HasIndex("TournamentId");
 
                     b.ToTable("Fights");
+                });
+
+            modelBuilder.Entity("BracketMap.DAL.Entities.FightTeamMap", b =>
+                {
+                    b.Property<int>("FightId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FightId", "TeamId");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("FightTeamMap");
                 });
 
             modelBuilder.Entity("BracketMap.DAL.Entities.Player", b =>
@@ -67,7 +76,7 @@ namespace BracketMap.DAL.Migrations
 
             modelBuilder.Entity("BracketMap.DAL.Entities.Team", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("TeamId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -78,7 +87,7 @@ namespace BracketMap.DAL.Migrations
                     b.Property<int>("TournamentId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("TeamId");
 
                     b.HasIndex("TournamentId");
 
@@ -115,6 +124,21 @@ namespace BracketMap.DAL.Migrations
                         .WithMany("Fights")
                         .HasForeignKey("TournamentId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BracketMap.DAL.Entities.FightTeamMap", b =>
+                {
+                    b.HasOne("BracketMap.DAL.Entities.Fight", "Fight")
+                        .WithMany("FightTeams")
+                        .HasForeignKey("FightId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BracketMap.DAL.Entities.Team", "Team")
+                        .WithMany("FightTeams")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

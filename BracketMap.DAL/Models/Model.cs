@@ -25,6 +25,21 @@ namespace BracketMap.DAL.Models
                 .HasOne(t => t.Tournament)
                 .WithMany(f => f.Fights)
                 .HasForeignKey(t => t.TournamentId);
+
+            modelBuilder.Entity<FightTeamMap>()
+                .HasKey(ft => new { ft.FightId, ft.TeamId });
+
+            modelBuilder.Entity<FightTeamMap>()
+                .HasOne<Fight>(ft => ft.Fight)
+                .WithMany(f => f.FightTeams)
+                .HasForeignKey(ft => ft.FightId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<FightTeamMap>()
+                .HasOne<Team>(ft => ft.Team)
+                .WithMany(f => f.FightTeams)
+                .HasForeignKey(ft => ft.TeamId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         public DbSet<Tournament> Tournaments { get; set; }

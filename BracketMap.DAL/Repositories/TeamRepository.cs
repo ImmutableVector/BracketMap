@@ -25,7 +25,7 @@ namespace BracketMap.DAL.Repositories
             var entity = dto.ToEntity(dto);
             _context.Teams.Add(entity);
             await _context.SaveChangesAsync();
-            return entity.Id;
+            return entity.TeamId;
         }
 
         //public async Task SaveTeams(List<TeamDto> dto)
