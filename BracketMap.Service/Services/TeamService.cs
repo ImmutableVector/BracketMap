@@ -17,7 +17,7 @@ namespace BracketMap.Business.Services
             _teamRepository = teamRepository;
         }
 
-        public async Task<int> SaveTeam(TeamDto dto)
-            => await _teamRepository.SaveTeam(dto);
+        public async Task<int> SaveTeam()
+            => await _teamRepository.SaveTeam();
     }
 }

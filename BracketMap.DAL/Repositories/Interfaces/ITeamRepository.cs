@@ -8,6 +8,6 @@ namespace BracketMap.DAL.Repositories.Interfaces
 {
     public interface ITeamRepository
     {
-        Task<int> SaveTeam(TeamDto dto);
+        Task<int> SaveTeam();
     }
 }

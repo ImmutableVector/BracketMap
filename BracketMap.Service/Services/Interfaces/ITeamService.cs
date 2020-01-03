@@ -8,6 +8,6 @@ namespace BracketMap.Business.Services.Interfaces
 {
     public interface ITeamService
     {
-        Task<int> SaveTeam(TeamDto dto);
+        Task<int> SaveTeam();
     }
 }

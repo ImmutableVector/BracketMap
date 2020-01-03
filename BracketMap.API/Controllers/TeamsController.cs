@@ -22,8 +22,9 @@ namespace BracketMap.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> PostTeam(TeamDto dto)
-        => Ok(await _teamService.SaveTeam(dto));
+        public async Task<ActionResult<int>> PostTeam()
+        => Ok(await _teamService.SaveTeam());
+
 
     }
 }

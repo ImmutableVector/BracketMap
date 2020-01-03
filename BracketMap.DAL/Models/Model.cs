@@ -1,5 +1,7 @@
 ﻿using BracketMap.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BracketMap.DAL.Models
 {
@@ -40,11 +42,56 @@ namespace BracketMap.DAL.Models
                 .WithMany(f => f.FightTeams)
                 .HasForeignKey(ft => ft.TeamId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<Library2Book>().HasKey(k => new { k.LibraryId, k.BookId });
+
+            modelBuilder.Entity<Library2Book>()
+                .HasOne(x => x.Book)
+                .WithMany(x => x.Library2Books)
+                .HasForeignKey(x => x.BookId);
+
+            modelBuilder.Entity<Library2Book>()
+               .HasOne(x => x.Library)
+               .WithMany(x => x.Library2Books)
+               .HasForeignKey(x => x.LibraryId);
+
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Tournament> Tournaments { get; set; }
         public DbSet<Fight> Fights { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Player> Players { get; set; }
+
+        public DbSet<Book> Books { get; set; }
+
+        public DbSet<Library> Libraries { get; set; }
     }
+
+    public class Library
+    {
+        [Key]
+        public int LibraryId { get; set; }
+        public List<Library2Book> Library2Books { get; set; } = new List<Library2Book>();
+    }
+
+    public class Book
+    {
+        [Key]
+        public int BookId { get; set; }
+        public List<Library2Book> Library2Books { get; set; } = new List<Library2Book>();
+    }
+
+    public class Library2Book
+    {
+        [Key]
+        public int BookId { get; set; }
+        public Book Book { get; set; }
+
+        [Key]
+        public int LibraryId { get; set; }
+        public Library Library { get; set; }
+    }
+
 }
