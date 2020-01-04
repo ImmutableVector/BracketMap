@@ -10,10 +10,10 @@ namespace BracketMap.DAL.Dtos
         public string TeamName { get; set; }
         public List<PlayerDto> Players { get; set; }
 
-        public Team ToEntity(TeamDto dto) => new Team
-        {
-            TournamentId = dto.TournamentId,
-            TeamName = dto.TeamName,
-        };
+        //public Team ToEntity(TeamDto dto) => new Team
+        //{
+        //    TournamentId = dto.TournamentId,
+        //    TeamName = dto.TeamName,
+        //};
     }
 }

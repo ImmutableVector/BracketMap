@@ -31,8 +31,8 @@ namespace BracketMap.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddScoped<ITournamentService, TournamentService>();
-            services.AddScoped<ITournamentRepository, TournamentRepository>();
+            //services.AddScoped<ITournamentService, TournamentService>();
+            //services.AddScoped<ITournamentRepository, TournamentRepository>();
 
             services.AddScoped<ITeamService, TeamService>();
             services.AddScoped<ITeamRepository, TeamRepository>();
