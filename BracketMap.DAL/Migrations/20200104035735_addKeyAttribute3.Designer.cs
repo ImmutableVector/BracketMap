@@ -4,14 +4,16 @@ using BracketMap.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BracketMap.DAL.Migrations
 {
     [DbContext(typeof(BracketMapContext))]
-    partial class BracketMapContextModelSnapshot : ModelSnapshot
+    [Migration("20200104035735_addKeyAttribute3")]
+    partial class addKeyAttribute3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,7 +161,7 @@ namespace BracketMap.DAL.Migrations
 
             modelBuilder.Entity("BracketMap.DAL.Entities.Fight", b =>
                 {
-                    b.HasOne("BracketMap.DAL.Entities.Tournament", null)
+                    b.HasOne("BracketMap.DAL.Entities.Tournament", "Tournament")
                         .WithMany("Fights")
                         .HasForeignKey("TournamentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -184,7 +186,7 @@ namespace BracketMap.DAL.Migrations
             modelBuilder.Entity("BracketMap.DAL.Entities.Player", b =>
                 {
                     b.HasOne("BracketMap.DAL.Entities.Team", "Team")
-                        .WithMany()
+                        .WithMany("Players")
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -192,7 +194,7 @@ namespace BracketMap.DAL.Migrations
 
             modelBuilder.Entity("BracketMap.DAL.Entities.Team", b =>
                 {
-                    b.HasOne("BracketMap.DAL.Entities.Tournament", null)
+                    b.HasOne("BracketMap.DAL.Entities.Tournament", "Tournament")
                         .WithMany("Teams")
                         .HasForeignKey("TournamentId")
                         .OnDelete(DeleteBehavior.Cascade)

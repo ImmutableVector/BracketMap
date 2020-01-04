@@ -31,21 +31,21 @@ namespace BracketMap.DAL.Repositories
                     PlayersPerTeam = tournament.PlayersPerTeam,
                     Status = tournament.Status,
                     // Fights = x.Fights.SelectToList(),
-                    Teams = tournament.Teams
-                    .Select(team => new TeamDto
-                    {
-                        TournamentId = team.TournamentId,
-                        TeamName = team.TeamName,
-                        Players = team.Players
-                        .Select(player => new PlayerDto
-                        {
-                            Id = player.Id,
-                            TeamId = player.TeamId,
-                            Name = player.Name,
-                        })
-                        .ToList()
-                    })
-                    .ToList()
+                    //Teams = tournament.Teams
+                    //.Select(team => new TeamDto
+                    //{
+                    //    TournamentId = team.TournamentId,
+                    //    TeamName = team.TeamName,
+                    //    Players = team.Players
+                    //    .Select(player => new PlayerDto
+                    //    {
+                    //        Id = player.Id,
+                    //        TeamId = player.TeamId,
+                    //        Name = player.Name,
+                    //    })
+                    //    .ToList()
+                    //})
+                    //.ToList()
                 })
                 .ToListAsync();
         }
@@ -61,21 +61,21 @@ namespace BracketMap.DAL.Repositories
                     PlayersPerTeam = tournament.PlayersPerTeam,
                     Status = tournament.Status,
                     // Fights = x.Fights.ToList(),
-                    Teams = tournament.Teams
-                    .Select(team => new TeamDto
-                    { 
-                        TournamentId = team.TournamentId,
-                        TeamName = team.TeamName,
-                        Players = team.Players
-                        .Select(player => new PlayerDto
-                        {
-                            Id = player.Id,
-                            TeamId = player.TeamId,
-                            Name = player.Name,
-                        })
-                        .ToList()
-                    })
-                    .ToList()
+                    //Teams = tournament.Teams
+                    //.Select(team => new TeamDto
+                    //{ 
+                    //    TournamentId = team.TournamentId,
+                    //    TeamName = team.TeamName,
+                    //    Players = team.Players
+                    //    .Select(player => new PlayerDto
+                    //    {
+                    //        Id = player.Id,
+                    //        TeamId = player.TeamId,
+                    //        Name = player.Name,
+                    //    })
+                    //    .ToList()
+                    //})
+                    //.ToList()
                 })
                 .SingleOrDefaultAsync(x=> x.Id == id);
         }

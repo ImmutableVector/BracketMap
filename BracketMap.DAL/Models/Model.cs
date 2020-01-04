@@ -13,35 +13,33 @@ namespace BracketMap.DAL.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Player>()
-                .HasOne(t => t.Team)
-                .WithMany(p => p.Players)
-                .HasForeignKey(t => t.TeamId);
+            //modelBuilder.Entity<Player>()
+            //    .HasOne(t => t.Team)
+            //    .WithMany(p => p.Players)
+            //    .HasForeignKey(t => t.TeamId);
 
-            modelBuilder.Entity<Team>()
-                .HasOne(t => t.Tournament)
-                .WithMany(x => x.Teams)
-                .HasForeignKey(t => t.TournamentId);
+            //modelBuilder.Entity<Team>()
+            //    .HasOne(t => t.Tournament)
+            //    .WithMany(x => x.Teams)
+            //    .HasForeignKey(t => t.TournamentId);
 
-            modelBuilder.Entity<Fight>()
-                .HasOne(t => t.Tournament)
-                .WithMany(f => f.Fights)
-                .HasForeignKey(t => t.TournamentId);
+            //modelBuilder.Entity<Fight>()
+            //    .HasOne(t => t.Tournament)
+            //    .WithMany(f => f.Fights)
+            //    .HasForeignKey(t => t.TournamentId);
 
             modelBuilder.Entity<FightTeamMap>()
                 .HasKey(ft => new { ft.FightId, ft.TeamId });
 
             modelBuilder.Entity<FightTeamMap>()
-                .HasOne<Fight>(ft => ft.Fight)
-                .WithMany(f => f.FightTeams)
-                .HasForeignKey(ft => ft.FightId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasOne(x => x.Fight)
+                .WithMany(x => x.FightTeams)
+                .HasForeignKey(x => x.FightId);
 
             modelBuilder.Entity<FightTeamMap>()
-                .HasOne<Team>(ft => ft.Team)
-                .WithMany(f => f.FightTeams)
-                .HasForeignKey(ft => ft.TeamId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasOne(x => x.Team)
+                .WithMany(x => x.FightTeams)
+                .HasForeignKey(x => x.TeamId);
 
 
             modelBuilder.Entity<Library2Book>().HasKey(k => new { k.LibraryId, k.BookId });
