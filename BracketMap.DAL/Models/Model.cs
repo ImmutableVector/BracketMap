@@ -66,23 +66,23 @@ namespace BracketMap.DAL.Models
 
 
 
-            //modelBuilder.Entity<FightTeamMap>().HasKey(k => new { k.TeamId, k.FightId });
-            //modelBuilder.Entity<FightTeamMap>()
-            //    .HasOne(x => x.Fight)
-            //    .WithMany(x => x.FightTeams)
-            //    .HasForeignKey(x => x.FightId);
+            modelBuilder.Entity<FightTeamMap>().HasKey(k => new { k.TeamId, k.FightId });
+            modelBuilder.Entity<FightTeamMap>()
+                .HasOne(x => x.Fight)
+                .WithMany(x => x.FightTeams)
+                .HasForeignKey(x => x.FightId);
 
-            //modelBuilder.Entity<FightTeamMap>()
-            //   .HasOne(x => x.Team)
-            //   .WithMany(x => x.FightTeams)
-            //   .HasForeignKey(x => x.TeamId);
+            modelBuilder.Entity<FightTeamMap>()
+               .HasOne(x => x.Team)
+               .WithMany(x => x.FightTeams)
+               .HasForeignKey(x => x.TeamId);
 
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Tournament> Tournaments { get; set; }
-        //public DbSet<Fight> Fights { get; set; }
-        //public DbSet<Team> Teams { get; set; }
+        public DbSet<Fight> Fights { get; set; }
+        public DbSet<Team> Teams { get; set; }
         public DbSet<Player> Players { get; set; }
 
         public DbSet<Book> Books { get; set; }
@@ -95,19 +95,19 @@ namespace BracketMap.DAL.Models
     }
 
 
-    //public class Fight
-    //{
-    //    [Key]
-    //    public int FightId { get; set; }
-    //    public List<FightTeamMap> FightTeams { get; set; } = new List<FightTeamMap>();
-    //}
+    public class Fight
+    {
+        [Key]
+        public int FightId { get; set; }
+        public List<FightTeamMap> FightTeams { get; set; } = new List<FightTeamMap>();
+    }
 
-    //public class Team
-    //{
-    //    [Key]
-    //    public int TeamId { get; set; }
-    //    public List<FightTeamMap> FightTeams { get; set; } = new List<FightTeamMap>();
-    //}
+    public class Team
+    {
+        [Key]
+        public int TeamId { get; set; }
+        public List<FightTeamMap> FightTeams { get; set; } = new List<FightTeamMap>();
+    }
 
     public class Library
     {
@@ -137,17 +137,17 @@ namespace BracketMap.DAL.Models
         public List<Library2Book2> Library2Book2s { get; set; } = new List<Library2Book2>();
     }
 
-    //public class FightTeamMap
-    //{
-    //    [Key]
-    //    public int FightId { get; set; }
-    //    public Fight Fight { get; set; }
+    public class FightTeamMap
+    {
+        [Key]
+        public int FightId { get; set; }
+        public Fight Fight { get; set; }
 
-    //    [Key]
-    //    public int TeamId { get; set; }
-    //    public Team Team { get; set; }
+        [Key]
+        public int TeamId { get; set; }
+        public Team Team { get; set; }
 
-    //}
+    }
 
     public class Library2Book
     {

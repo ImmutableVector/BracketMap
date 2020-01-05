@@ -31,6 +31,18 @@ namespace BracketMap.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Fights",
+                columns: table => new
+                {
+                    FightId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Fights", x => x.FightId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Libraries",
                 columns: table => new
                 {
@@ -65,6 +77,18 @@ namespace BracketMap.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Players", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Teams",
+                columns: table => new
+                {
+                    TeamId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Teams", x => x.TeamId);
                 });
 
             migrationBuilder.CreateTable(
@@ -131,6 +155,35 @@ namespace BracketMap.DAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "FightTeamMap",
+                columns: table => new
+                {
+                    FightId = table.Column<int>(nullable: false),
+                    TeamId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FightTeamMap", x => new { x.TeamId, x.FightId });
+                    table.ForeignKey(
+                        name: "FK_FightTeamMap_Fights_FightId",
+                        column: x => x.FightId,
+                        principalTable: "Fights",
+                        principalColumn: "FightId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FightTeamMap_Teams_TeamId",
+                        column: x => x.TeamId,
+                        principalTable: "Teams",
+                        principalColumn: "TeamId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FightTeamMap_FightId",
+                table: "FightTeamMap",
+                column: "FightId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Library2Book_BookId",
                 table: "Library2Book",
@@ -145,6 +198,9 @@ namespace BracketMap.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "FightTeamMap");
+
+            migrationBuilder.DropTable(
                 name: "Library2Book");
 
             migrationBuilder.DropTable(
@@ -155,6 +211,12 @@ namespace BracketMap.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tournaments");
+
+            migrationBuilder.DropTable(
+                name: "Fights");
+
+            migrationBuilder.DropTable(
+                name: "Teams");
 
             migrationBuilder.DropTable(
                 name: "Books");

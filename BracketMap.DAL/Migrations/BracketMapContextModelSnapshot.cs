@@ -81,6 +81,33 @@ namespace BracketMap.DAL.Migrations
                     b.ToTable("Books2");
                 });
 
+            modelBuilder.Entity("BracketMap.DAL.Models.Fight", b =>
+                {
+                    b.Property<int>("FightId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("FightId");
+
+                    b.ToTable("Fights");
+                });
+
+            modelBuilder.Entity("BracketMap.DAL.Models.FightTeamMap", b =>
+                {
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FightId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TeamId", "FightId");
+
+                    b.HasIndex("FightId");
+
+                    b.ToTable("FightTeamMap");
+                });
+
             modelBuilder.Entity("BracketMap.DAL.Models.Library", b =>
                 {
                     b.Property<int>("LibraryId")
@@ -133,6 +160,33 @@ namespace BracketMap.DAL.Migrations
                     b.HasIndex("BookId");
 
                     b.ToTable("Library2Book2");
+                });
+
+            modelBuilder.Entity("BracketMap.DAL.Models.Team", b =>
+                {
+                    b.Property<int>("TeamId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("TeamId");
+
+                    b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("BracketMap.DAL.Models.FightTeamMap", b =>
+                {
+                    b.HasOne("BracketMap.DAL.Models.Fight", "Fight")
+                        .WithMany("FightTeams")
+                        .HasForeignKey("FightId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BracketMap.DAL.Models.Team", "Team")
+                        .WithMany("FightTeams")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BracketMap.DAL.Models.Library2Book", b =>
