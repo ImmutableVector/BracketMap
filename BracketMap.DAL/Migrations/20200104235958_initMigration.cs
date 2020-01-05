@@ -2,7 +2,7 @@
 
 namespace BracketMap.DAL.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
